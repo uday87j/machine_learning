@@ -8,7 +8,7 @@ m = length(y); % number of training examples
 J_history = zeros(num_iters, 1);
 diff = 0.0
 
-for iter = 1:2
+for iter = 1:num_iters
 %for iter = 1:1
 
     % ====================== YOUR CODE HERE ======================
@@ -20,7 +20,7 @@ for iter = 1:2
     %
     diff = ((X.*(X*theta - y)).*alpha./m);
     theta = theta - [sum(diff(:, 1)); sum(diff(:, 2))];
-    fprintf('theta: %f\n', theta);
+    %fprintf('theta: %f\n', theta);
 
 
 
@@ -31,7 +31,7 @@ for iter = 1:2
 
     % Save the cost J in every iteration    
     J_history(iter) = computeCost(X, y, theta);
-    fprintf('J_history: %f\n', J_history);
+    %fprintf('J_history: %f\n', J_history);
 
 end
 %fprintf('size of diff: %d %d', size(diff, 1), size(diff, 2));
