@@ -13,8 +13,9 @@ g = zeros(size(z));
 %    g(i) = 1/(1 + exp(-z(i)));
 %end
 
-g = z;
 %g .= 1/(1 + exp(-g));
+
+g = z;
 g = exp(-g);
 g = g.+ 1;
 g = g.^(-1);
