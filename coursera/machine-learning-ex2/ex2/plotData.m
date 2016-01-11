@@ -20,11 +20,11 @@ neg_y_vec = []
 
 for i = 1:m
     if y(i) == 1
-        pos_x_vec = [pos_x_vec, X(i, 1)]
-        pos_y_vec = [pos_y_vec, X(i, 2)]
+        pos_x_vec = [pos_x_vec, X(i, 1)];
+        pos_y_vec = [pos_y_vec, X(i, 2)];
     else
-        neg_x_vec = [neg_x_vec, X(i, 1)]
-        neg_y_vec = [neg_y_vec, X(i, 2)]
+        neg_x_vec = [neg_x_vec, X(i, 1)];
+        neg_y_vec = [neg_y_vec, X(i, 2)];
     end
 end
 
