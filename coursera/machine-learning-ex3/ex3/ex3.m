@@ -34,6 +34,8 @@ fprintf('Loading and Visualizing Data ...\n')
 
 load('ex3data1.mat'); % training data stored in arrays X, y
 m = size(X, 1);
+%disp(m);
+%disp(size(y));
 
 % Randomly select 100 data points to display
 rand_indices = randperm(m);
@@ -65,5 +67,9 @@ pause;
 %  After ...
 pred = predictOneVsAll(all_theta, X);
 
+%fprintf('\ny:\n');
+%save -ascii 'gold.txt' y;
+%fprintf('\np:\n');
+%save -ascii 'pred.txt' pred;
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 

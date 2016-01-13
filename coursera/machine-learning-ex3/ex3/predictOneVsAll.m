@@ -29,7 +29,14 @@ X = [ones(m, 1) X];
 %       are in rows, then, you can use max(A, [], 2) to obtain the max 
 %       for each row.
 %       
+disp(size(X));
+disp(size(all_theta));
 
+rp = X*all_theta';
+%save -ascii 'raw_pred.txt' rp;
+
+[prob,p] = max(rp, [], 2);
+%save -ascii 'ind_pred.txt' p;
 
 
 
