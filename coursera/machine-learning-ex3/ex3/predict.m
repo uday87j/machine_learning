@@ -21,6 +21,29 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% Add ones to the X data matrix
+X = [ones(m, 1) X];
+
+%disp(size(X));
+%disp(size(Theta1));
+%disp(size(Theta2));
+
+Z2 = X*Theta1';
+%disp(size(Z2));
+% Add ones to the Z2 data matrix
+Z2 = [ones(size(Z2, 1), 1) Z2];
+
+A2 = sigmoid(Z2);
+%disp(size(A2));
+
+Z3 = A2*Theta2';
+%disp(size(Z3));
+
+A3 = sigmoid(Z3);
+
+[prob,p] = max(A3, [], 2);
+save -ascii 'pred_nn.txt' p;
+
 
 
 
