@@ -31,9 +31,10 @@ X = [ones(m, 1) X];
 Z2 = X*Theta1';
 %disp(size(Z2));
 % Add ones to the Z2 data matrix
-Z2 = [ones(size(Z2, 1), 1) Z2];
+%Z2 = [ones(size(Z2, 1), 1) Z2];
 
 A2 = sigmoid(Z2);
+A2 = [ones(size(A2, 1), 1) A2];
 %disp(size(A2));
 
 Z3 = A2*Theta2';
