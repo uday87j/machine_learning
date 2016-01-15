@@ -82,13 +82,13 @@ end
 
 J = J/m;
 
-Theta1 = Theta1.^2;
-Theta1(:,1) = zeros(size(Theta1, 1), 1); %Un-regularize Theta1_Bias
+jTheta1 = Theta1.^2;
+jTheta1(:,1) = zeros(size(jTheta1, 1), 1); %Un-regularize Theta1_Bias
 
-Theta2 = Theta2.^2;
-Theta2(:,1) = zeros(size(Theta2, 1), 1); %Un-regularize Theta2_Bias
+jTheta2 = Theta2.^2;
+jTheta2(:,1) = zeros(size(jTheta2, 1), 1); %Un-regularize Theta2_Bias
 
-J = J + ((sum(sum(Theta1)) + sum(sum(Theta2)))*lambda)/(2*m);
+J = J + ((sum(sum(jTheta1)) + sum(sum(jTheta2)))*lambda)/(2*m);
 
 % Back-propagation
 del1 = (Theta1_grad);
@@ -101,12 +101,12 @@ del2 = (Theta2_grad);
 
 for t = 1:m
     % Forward pass
-    a1 = X(i, :);
-    z2 = a1*Theta1';
+    a1 = X(t, :)';
+    z2 = Theta1*a1;
     a2 = sigmoid(z2);
 
-    a2 = [1, a2];
-    z3 = a2*Theta2';
+    a2 = [1; a2];
+    z3 = Theta2*a2;
     a3 = sigmoid(z3);
     %------------------------------%
 
@@ -115,18 +115,19 @@ for t = 1:m
     y_i = zeros(num_labels, 1);
     y_i(y(t), 1) = 1;
 
-    d3 = (a3' - y_i);
+    d3 = (a3 - y_i);
+    %disp(y_i); disp(a3);
 
     %d2 = (Theta2_grad'*d3).*(sigmoidGradient(z2)');
-    d2 = (Theta2'*d3).*[1; sigmoidGradient(z2)'];
+    d2 = (Theta2'*d3).*[1; sigmoidGradient(z2)];
 
     d2 = d2(2:end, :);
     
-    del2 = del2 + d3*a2;
+    del2 = del2 + d3*a2';
     %del2 = del2 + d3*(a2(1, 2:end));
     
     %del1 = del1 + d2*(a1(1, 2:end));
-    del1 = del1 + d2*a1;
+    del1 = del1 + d2*a1';
 end
 
 %disp(size(del1));
@@ -135,6 +136,8 @@ Theta1_grad_ur = (del1/m);
 Theta2_grad_ur = (del2/m);
 
 %Regularization
+Theta1_grad = Theta1_grad_ur;
+Theta2_grad = Theta2_grad_ur;
 Theta1_grad = Theta1_grad_ur + Theta1*(lambda/m);
 Theta2_grad = Theta2_grad_ur + Theta2*(lambda/m);
 Theta1_grad(:, 1) = Theta1_grad_ur(:, 1);
