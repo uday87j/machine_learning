@@ -29,6 +29,8 @@ m = size(X, 1);
 J = 0;
 Theta1_grad = zeros(size(Theta1));
 Theta2_grad = zeros(size(Theta2));
+%disp(size(Theta1_grad));
+%disp(size(Theta2_grad));
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the code by working through the
@@ -62,15 +64,81 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+X = [ones(m, 1), X];
+Z2 = X*Theta1';
+A2 = sigmoid(Z2);
 
+A2 = [ones(m, 1), A2];
+Z3 = A2*Theta2';
+A3 = sigmoid(Z3);
+%disp(size(A3));
 
+for i = 1:m
+    y_i = zeros(num_labels, 1);
+    y_i(y(i), 1) = 1;
+    x_i = A3(i, :)';
+    J = J + sum((-y_i).*log(x_i) - (1 - y_i).*log(1 - x_i));
+end
 
+J = J/m;
 
+Theta1 = Theta1.^2;
+Theta1(:,1) = zeros(size(Theta1, 1), 1); %Un-regularize Theta1_Bias
 
+Theta2 = Theta2.^2;
+Theta2(:,1) = zeros(size(Theta2, 1), 1); %Un-regularize Theta2_Bias
 
+J = J + ((sum(sum(Theta1)) + sum(sum(Theta2)))*lambda)/(2*m);
 
+% Back-propagation
+del1 = (Theta1_grad);
+%del1 = [ones(1, size(del1, 2)); del1];
+%disp(size(del1));
 
+del2 = (Theta2_grad);
+%del2 = del2(:, 2:end);
+%disp(size(del2));
 
+for t = 1:m
+    % Forward pass
+    a1 = X(i, :);
+    z2 = a1*Theta1';
+    a2 = sigmoid(z2);
+
+    a2 = [1, a2];
+    z3 = a2*Theta2';
+    a3 = sigmoid(z3);
+    %------------------------------%
+
+    % Backward prop
+
+    y_i = zeros(num_labels, 1);
+    y_i(y(t), 1) = 1;
+
+    d3 = (a3' - y_i);
+
+    %d2 = (Theta2_grad'*d3).*(sigmoidGradient(z2)');
+    d2 = (Theta2'*d3).*[1; sigmoidGradient(z2)'];
+
+    d2 = d2(2:end, :);
+    
+    del2 = del2 + d3*a2;
+    %del2 = del2 + d3*(a2(1, 2:end));
+    
+    %del1 = del1 + d2*(a1(1, 2:end));
+    del1 = del1 + d2*a1;
+end
+
+%disp(size(del1));
+%disp(size(del2));
+Theta1_grad_ur = (del1/m);
+Theta2_grad_ur = (del2/m);
+
+%Regularization
+Theta1_grad = Theta1_grad_ur + Theta1*(lambda/m);
+Theta2_grad = Theta2_grad_ur + Theta2*(lambda/m);
+Theta1_grad(:, 1) = Theta1_grad_ur(:, 1);
+Theta2_grad(:, 1) = Theta2_grad_ur(:, 1);
 
 
 
