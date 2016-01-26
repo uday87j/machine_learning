@@ -22,7 +22,8 @@ sigma = 0.3;
 %  Note: You can compute the prediction error using 
 %        mean(double(predictions ~= yval))
 %
-
+C = 0.01;
+sigma = 0.01;
 
 
 

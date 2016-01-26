@@ -46,7 +46,7 @@ pause;
 % You will have X, y in your environment
 load('ex6data1.mat');
 
-fprintf('\nTraining Linear SVM ...\n')
+fprintf('\nTraining Linear SVM with C=1...\n')
 
 % You should try to change the C value below and see how the decision
 % boundary varies (e.g., try C = 1000)
@@ -56,6 +56,20 @@ visualizeBoundaryLinear(X, y, model);
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+
+hold on;
+fprintf('\nTraining Linear SVM with C=100...\n')
+
+% You should try to change the C value below and see how the decision
+% boundary varies (e.g., try C = 1000)
+C = 1;  %Change this to 100
+model = svmTrain(X, y, C, @linearKernel, 1e-3, 20);
+visualizeBoundaryLinear(X, y, model);
+
+fprintf('Program paused. Press enter to continue.\n');
+pause;
+hold off;
+
 
 %% =============== Part 3: Implementing Gaussian Kernel ===============
 %  You will now implement the Gaussian kernel to use
@@ -105,7 +119,7 @@ C = 1; sigma = 0.1;
 % We set the tolerance and max_passes lower here so that the code will run
 % faster. However, in practice, you will want to run the training to
 % convergence.
-model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma)); 
+model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma)); %TODO: Uncomment
 visualizeBoundary(X, y, model);
 
 fprintf('Program paused. Press enter to continue.\n');
@@ -142,6 +156,34 @@ load('ex6data3.mat');
 [C, sigma] = dataset3Params(X, y, Xval, yval);
 
 % Train the SVM
+model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma));
+visualizeBoundary(X, y, model);
+
+%pred_err = mean(double(svmPredict(model, Xval) ~= yval));
+%fprintf('\nError in prediction: %f', pred_err);
+
+
+try_values = [0.03, 0.01, 0.1, 0.3, 1, 3, 10, 30];
+models = zeros(size(try_values, 2), 1);
+errors = zeros();
+for Cval = try_values
+    for Sval = try_values
+        model   = svmTrain(X, y, Cval, @(x1, x2) gaussianKernel(x1, x2, Sval));
+        err  = mean(double(svmPredict(model, Xval) ~= yval));
+        errors = [errors; err];
+    end
+end
+disp(errors);
+[ei, min_err]   = min(errors);
+fprintf('\nMin error: %f, index: %d', min_err, ei);
+
+% Optimim values
+div = size(try_values, 2);
+C = try_values((ei/div) + 1);
+sigma = try_values((mod(ei,div)) + 1);
+fprintf('\nOptimum values of C = %f, sigma = %f', C, sigma);
+
+% Train the SVM with optimum C & sigma
 model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma));
 visualizeBoundary(X, y, model);
 
