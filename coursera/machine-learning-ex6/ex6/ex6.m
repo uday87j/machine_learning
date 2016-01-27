@@ -78,9 +78,9 @@ hold off;
 fprintf('\nEvaluating the Gaussian Kernel ...\n')
 
 x1 = [1 2 1]; x2 = [0 4 -1]; sigma = 2;
-sim = gaussianKernel(x1, x2, sigma);
+sigma,sim = gaussianKernel(x1, x2, sigma);
 
-fprintf(['Gaussian Kernel between x1 = [1; 2; 1], x2 = [0; 4; -1], sigma = 0.5 :' ...
+fprintf(['Gaussian Kernel between x1 = [1; 2; 1], x2 = [0; 4; -1], sigma = 0.5f :' ...
          '\n\t%f\n(this value should be about 0.324652)\n'], sim);
 
 fprintf('Program paused. Press enter to continue.\n');
@@ -156,34 +156,6 @@ load('ex6data3.mat');
 [C, sigma] = dataset3Params(X, y, Xval, yval);
 
 % Train the SVM
-model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma));
-visualizeBoundary(X, y, model);
-
-%pred_err = mean(double(svmPredict(model, Xval) ~= yval));
-%fprintf('\nError in prediction: %f', pred_err);
-
-
-try_values = [0.03, 0.01, 0.1, 0.3, 1, 3, 10, 30];
-models = zeros(size(try_values, 2), 1);
-errors = zeros();
-for Cval = try_values
-    for Sval = try_values
-        model   = svmTrain(X, y, Cval, @(x1, x2) gaussianKernel(x1, x2, Sval));
-        err  = mean(double(svmPredict(model, Xval) ~= yval));
-        errors = [errors; err];
-    end
-end
-disp(errors);
-[ei, min_err]   = min(errors);
-fprintf('\nMin error: %f, index: %d', min_err, ei);
-
-% Optimim values
-div = size(try_values, 2);
-C = try_values((ei/div) + 1);
-sigma = try_values((mod(ei,div)) + 1);
-fprintf('\nOptimum values of C = %f, sigma = %f', C, sigma);
-
-% Train the SVM with optimum C & sigma
 model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma));
 visualizeBoundary(X, y, model);
 
