@@ -36,7 +36,8 @@ for Cval = try_values
         errors = [errors; err];
     end
 end
-disp(errors);
+%disp(errors);
+save -ascii "err.txt" errors;
 [min_err, ei]   = min(errors);
 fprintf('\nMin error: %f, index: %d', min_err, ei);
 
@@ -44,7 +45,7 @@ fprintf('\nMin error: %f, index: %d', min_err, ei);
 div = size(try_values, 2);
 %disp((ei/div));
 C = try_values(floor(ei/div) + 1);
-sigma = try_values(floor(mod(ei,div)) + 1);
+sigma = try_values(floor(mod(ei,div)));
 fprintf('\nOptimum values of C = %f, sigma = %f', C, sigma);
 
 % Train the SVM with optimum C & sigma
@@ -52,7 +53,7 @@ fprintf('\nOptimum values of C = %f, sigma = %f', C, sigma);
 %visualizeBoundary(X, y, model);
 
 C = 1.0;
-sigma = 0.3;
+sigma = 0.1;
 
 
 
