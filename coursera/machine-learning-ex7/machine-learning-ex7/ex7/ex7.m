@@ -79,7 +79,7 @@ load('ex7data2.mat');
 
 % Settings for running K-Means
 K = 3;
-max_iters = 10;
+max_iters = 5;%10;
 
 % For consistency, here we set centroids to specific values
 % but in practice you want to generate them automatically, such as by
@@ -123,7 +123,7 @@ X = reshape(A, img_size(1) * img_size(2), 3);
 
 % Run your K-Means algorithm on this data
 % You should try different values of K and max_iters here
-K = 16; 
+K = 32;%16; 
 max_iters = 10;
 
 % When using K-Means, it is important the initialize the centroids

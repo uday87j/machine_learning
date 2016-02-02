@@ -25,7 +25,22 @@ centroids = zeros(K, n);
 %
 % Note: You can use a for-loop over the centroids to compute this.
 %
-
+%disp(idx);
+%disp(X);
+%disp(centroids(1,:));
+for c = 1:K
+    Xc = [];%zeros(1, n);
+    for i = 1:size(idx, 1)
+        if (idx(i) == c)
+            %disp(X(i, :));
+            Xc = [Xc; X(i, :)];
+            %disp(Xc);
+        end
+    end
+    uc = sum(Xc, 1) / size(Xc, 1);
+    %disp(uc);
+    centroids(c, :) = uc;
+end
 
 
 
