@@ -17,6 +17,9 @@ J = 0;
 X_grad = zeros(size(X));
 Theta_grad = zeros(size(Theta));
 
+%disp(size(X_grad));
+%disp(size(Theta_grad));
+
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost function and gradient for collaborative
 %               filtering. Concretely, you should first implement the cost
@@ -40,22 +43,26 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
+J = sum(sum((((X * Theta') - Y) .^ 2) .* R)) / 2;
 
+X_grad = ((((X * Theta') - Y) .* R) * Theta);
 
-
-
-
-
-
-
-
-
-
-
-
-
+Theta_grad = ((((X * Theta') - Y) .* R)' * X);
 
 % =============================================================
+
+
+% Regularization
+
+J = J + ((lambda * sum(Theta(:) .^ 2)) / 2) + ((lambda * sum(X(:) .^ 2)) / 2);
+
+Xt_grad = (lambda * X);
+%Xt_grad(1, : ) = zeros(1, size(Xt_grad, 2));
+X_grad  = X_grad + Xt_grad;
+
+Thetat_grad = (lambda * Theta);
+%Thetat_grad(1, : ) = zeros(1, size(Thetat_grad, 2));
+Theta_grad = Theta_grad + Thetat_grad;
 
 grad = [X_grad(:); Theta_grad(:)];
 
