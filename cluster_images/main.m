@@ -3,7 +3,8 @@
 width = 100;
 height = 100;
 
-images = preprocess("C:\\code\\ml\\cluster_images\\src_image", width, height);
+pca_features = 1000;
+images = preprocess("src_image", width, height, pca_features);
 %disp(size(images)); %Each row is an image
 %save -ascii "images.txt" images
 fprintf("\nPreprocessing completed\n");
@@ -18,8 +19,8 @@ fprintf("\nPreprocessing completed\n");
 %end
 
 % Prepare random centroids
-K = 5;
-max_rand_iters = 5;%50
+K = 2;
+max_rand_iters = 10;%50
 Jmin  = 0.0;
 clusters = zeros(size(images, 1), 1);
 
