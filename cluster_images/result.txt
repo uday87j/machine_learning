@@ -1,0 +1,21 @@
+Results:
+
+-----------------------------------------------------------------
+Food items accuracy:
+Clustering with PCA:
+1000 PCA features 100 random iterations & 100 K-Means iterations
+40 X 40 greyscale image
+No. images  :   No. of Clusters : Correctly classified
+34          :   3               :   21
+48          :   4               :   28
+98          :   5               :   34
+-----------------------------------------------------------------
+Car/House/Cat accuracy:
+clustering with PCA:
+1000 PCA features 100 random iterations & 100 K-Means iterations
+40 X 40 greyscale image
+White background
+No. images  :   No. of Clusters : Correctly classified
+20          :   2               :   15
+30          :   3               :   19
+30          :   3               :   18  :   RGB 20x20

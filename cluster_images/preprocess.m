@@ -1,5 +1,7 @@
 function [images] = preprocess(image_path, width, height, reduced_dim)
 % 'image_path' contains the path of images that need to be preprocessed
+% Assume: This directory contains only images and no sub-directories
+% TODO: Avoid this assumption
 % the images go through following stages
 % 1. Resize to width X height
 % 2. Convert to greyscale
@@ -9,7 +11,7 @@ function [images] = preprocess(image_path, width, height, reduced_dim)
 
 images = [];
 
-if ~exist('reduced_dim', 'var') || isempty(reduced_dim) 
+if ~exist('reduced_dim', 'var') || isempty(reduced_dim)
   reduced_dim = 2;
 end
 
@@ -18,8 +20,8 @@ files = dir(image_path);
 fprintf("\nThere are %d files\n", size(files, 1));
 
 for f = 3:size(files, 1)  % First 2 files are "." & ".."
-  
-  disp(files(f).name);
+
+  %disp(files(f).name);
   [img, map, alpha] = imread(strcat(image_path, "/", files(f).name));
 
   %img = rgb2gray(img);
@@ -27,7 +29,7 @@ for f = 3:size(files, 1)  % First 2 files are "." & ".."
 
   X = img(:)';
   X = double(X);    % For PCA's covariance multiplication
-  
+
   images = [images; X];
 
 end

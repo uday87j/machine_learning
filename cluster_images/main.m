@@ -1,10 +1,10 @@
 % Main file that runs the image clustering algorithm
 
-width = 100;
-height = 100;
+width = 40;
+height = 40;
 
 pca_features = 1000;
-images = preprocess("src_image", width, height, pca_features);
+images = preprocess("images/test", width, height, pca_features);
 %disp(size(images)); %Each row is an image
 %save -ascii "images.txt" images
 fprintf("\nPreprocessing completed\n");
@@ -19,8 +19,8 @@ fprintf("\nPreprocessing completed\n");
 %end
 
 % Prepare random centroids
-K = 2;
-max_rand_iters = 10;%50
+K = 3;
+max_rand_iters = 100;%50
 Jmin  = 0.0;
 clusters = zeros(size(images, 1), 1);
 
@@ -28,7 +28,7 @@ for rand_iter = 1:max_rand_iters
 
   initial_centroids = kMeansInitCentroids(images, K);
   %save -ascii "initial_centroids.txt" initial_centroids
-  max_iters = 10;
+  max_iters = 100;
 
   % Run K-Means algorithm. The 'true' at the end tells our function to plot
   % the progress of K-Means
