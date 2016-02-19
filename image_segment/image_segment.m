@@ -6,17 +6,31 @@ cluster_colours = [0:64/K:63];  % Based on default colourmap()
 
 [img, map, alpha] = imread(image_name);
 
-img = rgb2gray(img);    % Try RGB later
+%img = rgb2gray(img);    % Try RGB later
 
-width = size(img, 1);
-height = size(img, 2);
+[iimg, cmap] = rgb2ind(img);
+save -ascii "ind.txt" iimg;
 
-X = img(:);    % Get a row vector of all pixels in image
+width = size(iimg, 1);
+height = size(iimg, 2);
 
-[idx] = find_min_kmeans(X, 20, 30, 2);
+pix = iimg(:);
+X = zeros(size(pix, 1), 3); % 3 for RGB
 
-%initial_centroids = kMeansInitCentroids(X, num_segments);
-%[centroids, idx] = runkMeans(X, initial_centroids, 10, false);
+disp(size(pix));
+disp(size(X));
+disp(size(cmap));
+
+for i = 1:size(pix, 1)
+    %disp(i);
+    %disp(pix(i));
+    X(i, :) = cmap(pix(i) + 1, :);  % cmap indexing start from 0
+end
+
+%[idx] = find_min_kmeans(X, 20, 30, 2);
+
+initial_centroids = kMeansInitCentroids(X, num_segments);
+[centroids, idx] = runkMeans(X, initial_centroids, 10, false);
 %disp(size(idx));
 
 rec_img = zeros(size(idx));
