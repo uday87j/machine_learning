@@ -1,8 +1,11 @@
 % Main file that runs the image clustering algorithm
 
-seg = image_segment("test/cat1.jpeg", 2);
-%img = imresize("test/pancake.jpg", 100, 100);
+seg = preprocess("../test_images/set1", 100, 100);
 
-%imshow(seg);
+c = cluster_images(seg, 3);
+disp(c);
+
+f1 = measure_f1(c, [10, 10, 10]);
+fprintf("\nF1 score: %f", f1);
 
 pause;
