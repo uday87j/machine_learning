@@ -18,12 +18,12 @@ segments = [];
 
 files = fetch_file_names(image_path);
 nimages = size(files, 1);
-fprintf("\nThere are %d files\n", nimages);
+% fprintf("\nThere are %d files\n", nimages);
 
 dseg = zeros(nimages, 3);
 npix = zeros(nimages, 1);
 
-NS = 2; % Number of segments required in each image
+NS = 3; % Number of segments required in each image
 
 for f = 1:size(files, 1)  % First 2 files are "." & ".."
 

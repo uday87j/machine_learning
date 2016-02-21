@@ -1,6 +1,6 @@
 % Main file that runs the image clustering algorithm
 
-seg = preprocess("../test_images/set1", 100, 100);
+seg = preprocess("../test_images/set1", 40, 40);
 
 c = cluster_images(seg, 3);
 disp(c);
