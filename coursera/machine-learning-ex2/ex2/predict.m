@@ -23,6 +23,9 @@ for i = 1:1:size(p)
     end
 end
 
+%% Vectorized impl
+% p = (h >= 0.5);
+
 
 
 

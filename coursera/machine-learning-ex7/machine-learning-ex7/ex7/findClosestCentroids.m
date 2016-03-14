@@ -7,7 +7,7 @@ function idx = findClosestCentroids(X, centroids)
 
 % Set K
 K = size(centroids, 1);
-fprintf("\nCentroids:\n");
+%fprintf("\nCentroids:\n");
 %disp(centroids);
 
 % You need to return the following variables correctly.
