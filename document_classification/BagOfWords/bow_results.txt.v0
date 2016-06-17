@@ -1,0 +1,120 @@
+
+#Train: 0, Feature size: 5, Accuracy: 0.243363
+
+#Train: 0, Feature size: 10, Accuracy: 0.243363
+
+#Train: 0, Feature size: 15, Accuracy: 0.243363
+
+#Train: 0, Feature size: 20, Accuracy: 0.243363
+
+#Train: 0, Feature size: 25, Accuracy: 0.243363
+
+#Train: 0, Feature size: 30, Accuracy: 0.243363
+
+#Train: 1, Feature size: 5, Accuracy: 0.267699
+
+#Train: 1, Feature size: 10, Accuracy: 0.280973
+
+#Train: 1, Feature size: 15, Accuracy: 0.223451
+
+#Train: 1, Feature size: 20, Accuracy: 0.225664
+
+#Train: 1, Feature size: 25, Accuracy: 0.210177
+
+#Train: 1, Feature size: 30, Accuracy: 0.212389
+
+#Train: 10, Feature size: 5, Accuracy: 0.511062
+
+#Train: 10, Feature size: 10, Accuracy: 0.524336
+
+#Train: 10, Feature size: 15, Accuracy: 0.5
+
+#Train: 10, Feature size: 20, Accuracy: 0.455752
+
+#Train: 10, Feature size: 25, Accuracy: 0.462389
+
+#Train: 10, Feature size: 30, Accuracy: 0.451327
+
+#Train: 50, Feature size: 5, Accuracy: 0.672566
+
+#Train: 50, Feature size: 10, Accuracy: 0.712389
+
+#Train: 50, Feature size: 15, Accuracy: 0.710177
+
+#Train: 50, Feature size: 20, Accuracy: 0.723451
+
+#Train: 50, Feature size: 25, Accuracy: 0.745575
+
+#Train: 50, Feature size: 30, Accuracy: 0.754425
+
+#Train: 100, Feature size: 5, Accuracy: 0.738938
+
+#Train: 100, Feature size: 10, Accuracy: 0.772124
+
+#Train: 100, Feature size: 15, Accuracy: 0.780973
+
+#Train: 100, Feature size: 20, Accuracy: 0.814159
+
+#Train: 100, Feature size: 25, Accuracy: 0.80531
+
+#Train: 100, Feature size: 30, Accuracy: 0.807522
+
+#Train: 150, Feature size: 5, Accuracy: 0.754425
+
+#Train: 150, Feature size: 10, Accuracy: 0.778761
+
+#Train: 150, Feature size: 15, Accuracy: 0.79646
+
+#Train: 150, Feature size: 20, Accuracy: 0.823009
+
+#Train: 150, Feature size: 25, Accuracy: 0.834071
+
+#Train: 150, Feature size: 30, Accuracy: 0.827434
+
+#Train: 200, Feature size: 5, Accuracy: 0.743363
+
+#Train: 200, Feature size: 10, Accuracy: 0.778761
+
+#Train: 200, Feature size: 15, Accuracy: 0.811947
+
+#Train: 200, Feature size: 20, Accuracy: 0.827434
+
+#Train: 200, Feature size: 25, Accuracy: 0.840708
+
+#Train: 200, Feature size: 30, Accuracy: 0.823009
+
+#Train: 250, Feature size: 5, Accuracy: 0.767699
+
+#Train: 250, Feature size: 10, Accuracy: 0.783186
+
+#Train: 250, Feature size: 15, Accuracy: 0.827434
+
+#Train: 250, Feature size: 20, Accuracy: 0.836283
+
+#Train: 250, Feature size: 25, Accuracy: 0.845133
+
+#Train: 250, Feature size: 30, Accuracy: 0.836283
+
+#Train: 300, Feature size: 5, Accuracy: 0.752212
+
+#Train: 300, Feature size: 10, Accuracy: 0.787611
+
+#Train: 300, Feature size: 15, Accuracy: 0.818584
+
+#Train: 300, Feature size: 20, Accuracy: 0.845133
+
+#Train: 300, Feature size: 25, Accuracy: 0.853982
+
+#Train: 300, Feature size: 30, Accuracy: 0.85177
+
+#Train: -1, Feature size: 5, Accuracy: 0.811947
+
+#Train: -1, Feature size: 10, Accuracy: 0.862832
+
+#Train: -1, Feature size: 15, Accuracy: 0.889381
+
+#Train: -1, Feature size: 20, Accuracy: 0.926991
+
+#Train: -1, Feature size: 25, Accuracy: 0.931416
+
+#Train: -1, Feature size: 30, Accuracy: 0.940265
