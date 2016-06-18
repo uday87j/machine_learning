@@ -22,10 +22,10 @@ namespace ml    {
         bowY_t (const size_t id = -1, const string y_k = "") : id_(id), name_ (y_k), sample_size_ (0) {}
 
         void set_name(const string nm) { name_ = nm; }
-        string get_name() { return name_; }
+        string get_name() const { return name_; }
 
         void set_id (const size_t s)    { id_ = s; }
-        const size_t get_id()   { return id_; }
+        const size_t get_id() const   { return id_; }
 
         void create_bag_of_words (const string train_data)  {
             word_count_ = split_count (train_data);
@@ -33,11 +33,11 @@ namespace ml    {
         }
 
         void set_sample_size(const size_t n)    { sample_size_ = n; }
-        const size_t get_sample_size()  { return sample_size_; }
+        const size_t get_sample_size() const  { return sample_size_; }
 
-        const size_t get_word_count (const string word)    { return word_count_[word]; }
+        const size_t get_word_count (const string word) /*const*/    { return word_count_[word]; }
 
-        const size_t get_bag_size() { return word_count_.size(); }
+        const size_t get_bag_size() const { return word_count_.size(); }
 
         word_count_t& get_bow ()    { return word_count_; }
 
@@ -57,16 +57,16 @@ namespace ml    {
                 auto samples = 0;
                 auto first = fs::directory_iterator(p);
                 auto last = fs::directory_iterator();
-                //if (num_train_samples != -1) last = first;//std::next(first, num_train_samples);
-                //std::advance(last, num_train_samples);
                 assert (first != last);
-                for (auto itr = first; (itr != last) && (samples != num_train_samples); ++itr)  {
+
+                for (auto itr = first; (itr != last) && (samples != num_train_samples); ++itr, ++samples)  {
                     if (fs::is_regular_file (*itr))   {
                         fstr += read_file_as_string ((*itr).path().string());
-                        ++samples;
                     }
                 }
+
                 y.create_bag_of_words (fstr);// cout << fstr << endl;
+                
                 y.set_sample_size (samples); // cout << "\n#Samples: " << samples << endl;
             }
             else cout << p << " is not a directory\n";
