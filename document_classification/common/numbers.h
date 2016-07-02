@@ -53,5 +53,18 @@ namespace ml    {
             return vec;
         }
 
+    template <typename fwd_itr_t>
+        fwd_itr_t max (fwd_itr_t first, fwd_itr_t last) {
+            auto m = *first;
+            auto ret = first;
+            while (++first != last)   {
+                if (*first > m) {
+                    m = *first;
+                    ret = first;
+                }
+            }
+            return ret;
+        }
+
 }
 #endif
